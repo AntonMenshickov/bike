@@ -50,7 +50,7 @@ public class MainMenuScreen implements Screen, InputProcessor {
         exit.setHeight(30f);
         stage.addActor(table);
         table.add(actor).expand().top().left();
-        table.add(exit).expand().top().left();
+        table.add(exit).expand().top().right();
         table.row();
 
 
