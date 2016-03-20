@@ -28,7 +28,7 @@ public class WorldController {
         playerIdle(myWorld.player);
     }
 
-    public void update(float delta) {
+    public void update() {
         processInput();
         playerUpdate(myWorld.player);
     }
@@ -47,8 +47,6 @@ public class WorldController {
 
     public void playerMoveLeft(Player player) {
         player.state = Controll.LEFT;
-        player.rightWheel().baseJoint.enableLimit(false);
-        player.leftWheel().baseJoint.enableLimit(false);
         player.leftWheel().baseJoint.enableMotor(true);
         player.leftWheel().baseJoint.setMaxMotorTorque(10f + player.getEnginePower());
         player.leftWheel().baseJoint.setMotorSpeed(player.leftWheel().baseJoint.getMaxMotorTorque() * 1.1f);
@@ -56,8 +54,6 @@ public class WorldController {
 
     public void playerMoveRight(Player player) {
         player.state = Controll.RIGHT;
-        player.rightWheel().baseJoint.enableLimit(false);
-        player.leftWheel().baseJoint.enableLimit(false);
         player.leftWheel().baseJoint.enableMotor(true);
         player.leftWheel().baseJoint.setMaxMotorTorque(10f + player.getEnginePower());
         player.leftWheel().baseJoint.setMotorSpeed(-player.leftWheel().baseJoint.getMaxMotorTorque() * 1.1f);
@@ -65,16 +61,13 @@ public class WorldController {
 
     public void playerStop(Player player) {
         player.state = Controll.BREAK;
-        player.leftWheel().baseJoint.enableLimit(true);
-        player.rightWheel().baseJoint.enableLimit(true);
-        player.leftWheel().wheel.setTransform(player.leftWheel().wheel.getPosition(), 0f);
-        player.rightWheel().wheel.setTransform(player.rightWheel().wheel.getPosition(), 0f);
+        player.leftWheel().baseJoint.enableMotor(false);
+        player.leftWheel().wheel.setAngularVelocity(player.leftWheel().wheel.getAngularVelocity() / player.getWheelsPower());
+        player.rightWheel().wheel.setAngularVelocity(player.rightWheel().wheel.getAngularVelocity() / player.getWheelsPower());
     }
 
     public void playerIdle(Player player) {
         player.state = Controll.IDLE;
-        player.leftWheel().baseJoint.enableLimit(false);
-        player.rightWheel().baseJoint.enableLimit(false);
         player.leftWheel().baseJoint.enableMotor(false);
         player.hull().hull.setAngularVelocity(0f);
     }
