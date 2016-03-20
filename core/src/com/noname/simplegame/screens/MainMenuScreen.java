@@ -3,18 +3,28 @@ package com.noname.simplegame.screens;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.PerspectiveCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton.TextButtonStyle;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
+import com.badlogic.gdx.scenes.scene2d.utils.NinePatchDrawable;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
+import com.badlogic.gdx.utils.viewport.ExtendViewport;
+import com.badlogic.gdx.utils.viewport.FillViewport;
+import com.badlogic.gdx.utils.viewport.ScreenViewport;
+import com.badlogic.gdx.utils.viewport.StretchViewport;
+import com.badlogic.gdx.utils.viewport.Viewport;
 import com.noname.simplegame.model.AssetLoader;
 
 /**
@@ -27,19 +37,27 @@ public class MainMenuScreen implements Screen {
     private TextButton play;
     private TextButton exit;
     private Image bike;
+    private Viewport viewport;
+    private Camera camera;
 
     public MainMenuScreen(final Game game) {
         this.game = game;
         this.game.setScreen(this);
-        AssetLoader.loadButtons();
-        stage = new Stage();
+
+
+    }
+
+    @Override
+    public void show() {
+        AssetLoader.mainMenu();
         table = new Table();
         table.setFillParent(true);
+        stage = new Stage(new ScreenViewport());
         Gdx.input.setInputProcessor(stage);
         TextButtonStyle tbs = new TextButtonStyle();
         tbs.font = new BitmapFont();
-        tbs.up = new TextureRegionDrawable(AssetLoader.buttonUp);
-        tbs.down = new TextureRegionDrawable(AssetLoader.buttonDown);
+        tbs.up = new NinePatchDrawable(AssetLoader.buttonUp);
+        tbs.down = new NinePatchDrawable(AssetLoader.buttonDown);
         play = new TextButton("Play", tbs);
         play.addListener(new ChangeListener() {
             @Override
@@ -48,23 +66,29 @@ public class MainMenuScreen implements Screen {
             }
         });
         table.center();
-        table.setDebug(true);
+        //table.setDebug(true);
+        AssetLoader.load();
+        Image bike = new Image(new TextureRegionDrawable(new TextureRegion(new Texture(Gdx.files.internal("data/bikePrew.png")))));
+        ImageButton.ImageButtonStyle ibs = new ImageButton.ImageButtonStyle(null, null,
+                null,AssetLoader.previous, AssetLoader.previous, null);
+
+        ImageButton previous = new ImageButton(ibs);
+        table.add(previous).left().width(64f);
+        table.add(bike).center().expandY().width(300f).bottom().padBottom(100f);
+        ImageButton.ImageButtonStyle ibs2 = new ImageButton.ImageButtonStyle(null, null,
+                null,AssetLoader.next, AssetLoader.next, null);
+        ImageButton next = new ImageButton(ibs2);
+        table.add(next).right().width(64f);
+        table.row();
         exit = new TextButton("exit", tbs);
         exit.setWidth(30f);
         stage.addActor(table);
-        table.add(play).expand(true,false).top().left();
+        table.setBackground(new NinePatchDrawable(AssetLoader.head));
+        table.add(play).expand(true,false).top().left().width(200f).height(50f);
         table.add().width(100f);
-        table.add(exit).expand(true,false).top().right();
-        table.row();
-        AssetLoader.load();
-        Image bike = new Image(new TextureRegionDrawable(new TextureRegion(new Texture(Gdx.files.internal("data/bikePrew.png")))));
-        table.add().width(100f);
-        table.add(bike).expand(true,true).center();
+        table.add(exit).expand(true,false).top().right().width(200f).height(50f);;
 
-    }
 
-    @Override
-    public void show() {
     }
 
     @Override
@@ -77,7 +101,7 @@ public class MainMenuScreen implements Screen {
 
     @Override
     public void resize(int width, int height) {
-
+        stage.getViewport().update(width, height, true);
     }
 
     @Override

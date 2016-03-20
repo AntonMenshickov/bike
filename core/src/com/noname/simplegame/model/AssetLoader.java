@@ -3,25 +3,30 @@ package com.noname.simplegame.model;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.Texture.TextureFilter;
+import com.badlogic.gdx.graphics.g2d.NinePatch;
+import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.scenes.scene2d.utils.SpriteDrawable;
 
 public class AssetLoader {
-
+    public static TextureAtlas atlas;
     public static Texture texture;
     public static Texture texture2;
     public static Texture texture3;
     public static Texture texture4;
     public static TextureRegion bikeHull, bikeWheel;
-    public static TextureRegion buttonUp, buttonDown;
+    public static NinePatch buttonUp, buttonDown, head;
+    public static SpriteDrawable next, previous;
     public static TextureRegion gasUp, gasDown, breakUp, breakDown;
 
-    public static void loadButtons() {
-        texture3 = new Texture(Gdx.files.internal("data/button.png"));
-        buttonDown = new TextureRegion(texture3, 0, 0, texture3.getWidth(), texture3.getHeight() / 2);
-        buttonDown.flip(false, false);
-
-        buttonUp = new TextureRegion(texture3, 0, texture3.getHeight() / 2, texture3.getWidth(), texture3.getHeight() / 2);
-        buttonUp.flip(false, false);
+    public static void mainMenu() {
+        atlas = new TextureAtlas(Gdx.files.internal("data/menu.atlas"));
+        buttonUp = atlas.createPatch("buttonUp");
+        buttonDown = atlas.createPatch("buttonDown");
+        head = atlas.createPatch("head");
+        next = new SpriteDrawable(atlas.createSprite ("next"));
+        previous = new SpriteDrawable(atlas.createSprite("previous"));
     }
 
     public static void loadControls() {

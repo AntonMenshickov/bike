@@ -11,13 +11,14 @@ import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton.ImageButtonStyle;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
+import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.noname.simplegame.controller.WorldController;
 import com.noname.simplegame.model.AssetLoader;
 import com.noname.simplegame.model.MyWorld;
 import com.noname.simplegame.view.WorldRenderer;
 
 
-public class GameScreen implements Screen, InputProcessor {
+public class GameScreen implements Screen {
     private final Game game;
     private MyWorld world;
     private WorldRenderer renderer;
@@ -33,7 +34,16 @@ public class GameScreen implements Screen, InputProcessor {
     public GameScreen(final Game game) {
         this.game = game;
         game.setScreen(this);
-        stage = new Stage();
+
+    }
+
+    @Override
+    public void show() {
+        world = new MyWorld();
+        renderer = new WorldRenderer(world);
+        controller = new WorldController(world);
+
+        stage = new Stage(new ScreenViewport());
         Gdx.input.setInputProcessor(stage);
         table = new Table();
         table.setFillParent(true);
@@ -57,34 +67,11 @@ public class GameScreen implements Screen, InputProcessor {
     }
 
     @Override
-    public void show() {
-        world = new MyWorld();
-        renderer = new WorldRenderer(world);
-        controller = new WorldController(world);
-        //Gdx.input.setInputProcessor(stage);
-
-    }
-
-    @Override
-    public boolean touchDragged(int x, int y, int pointer) {
-        return false;
-    }
-
-    @Override
-    public boolean mouseMoved(int x, int y) {
-        return false;
-    }
-
-    @Override
-    public boolean keyTyped(char character) {
-        return false;
-    }
-
-    @Override
     public void resize(int width, int height) {
         this.width = width;
         this.height = height;
         renderer.setSize(width, height);
+        stage.getViewport().update(width, height, true);
     }
 
     @Override
@@ -108,12 +95,6 @@ public class GameScreen implements Screen, InputProcessor {
         world.dispose();
     }
 
-
-    @Override
-    public boolean keyDown(int keycode) {
-        control(keycode);
-        return true;
-    }
 
     @Override
     public void render(float delta) {
@@ -140,11 +121,6 @@ public class GameScreen implements Screen, InputProcessor {
         stage.draw();
     }
 
-    @Override
-    public boolean keyUp(int keycode) {
-        controller.keyReset();
-        return true;
-    }
 
     private void control(int keycode) {
         //A - 29 D - 32 SPACE - 62
@@ -158,33 +134,5 @@ public class GameScreen implements Screen, InputProcessor {
             controller.breakPressed();
         }
 
-    }
-
-    @Override
-    public boolean touchDown(int x, int y, int pointer, int button) {
-        if (y > this.height - 100) {
-            controller.breakPressed();
-            return true;
-        }
-        if (x > this.width / 2) {
-            controller.rightPressed();
-            return true;
-        }
-        if (x < this.width / 2) {
-            controller.leftPressed();
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public boolean touchUp(int x, int y, int pointer, int button) {
-        controller.keyReset();
-        return true;
-    }
-
-    @Override
-    public boolean scrolled(int amount) {
-        return false;
     }
 }

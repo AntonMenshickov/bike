@@ -5,6 +5,7 @@ import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
 import com.badlogic.gdx.physics.box2d.Filter;
 import com.badlogic.gdx.physics.box2d.Fixture;
+import com.badlogic.gdx.physics.box2d.MassData;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 
@@ -23,7 +24,6 @@ public class Hull {
         hull = world.createBody(def);
         PolygonShape poly = new PolygonShape();
         poly.setAsBox(width, height);
-
         hullFixture = hull.createFixture(poly, density);
         hullFixture.setFilterData(f);
 
