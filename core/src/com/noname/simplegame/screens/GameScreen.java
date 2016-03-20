@@ -115,7 +115,7 @@ public class GameScreen implements Screen {
             }
 
         }
-        controller.update(delta);
+        controller.update();
         renderer.render(delta);
         stage.draw();
     }
