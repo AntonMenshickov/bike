@@ -65,7 +65,7 @@ public class MainMenuScreen implements Screen {
 
 
         ImageButton settings = new ImageButton(new ImageButton.ImageButtonStyle(null, null,
-                null,AssetLoader.settings, AssetLoader.settings, null));
+                null,AssetLoader.settingsUp, AssetLoader.settingsDown, null));
 
         Image bike = new Image(new TextureRegionDrawable(new TextureRegion(new Texture(Gdx.files.internal("data/bikePrew.png")))));
 

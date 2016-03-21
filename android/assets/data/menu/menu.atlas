@@ -6,21 +6,21 @@ filter: Nearest,Nearest
 repeat: none
 buttonDown
   rotate: false
-  xy: 2, 2
+  xy: 2, 32
   size: 200, 50
   orig: 200, 50
   offset: 0, 0
   index: -1
 buttonUp
   rotate: false
-  xy: 274, 136
+  xy: 274, 166
   size: 200, 50
   orig: 200, 50
   offset: 0, 0
   index: -1
 head
   rotate: false
-  xy: 274, 34
+  xy: 274, 64
   size: 100, 100
   split: 0, 99, 81, 18
   pad: 0, 0, 0, 0
@@ -29,22 +29,29 @@ head
   index: -1
 next
   rotate: false
-  xy: 2, 54
+  xy: 2, 84
   size: 134, 132
   orig: 134, 132
   offset: 0, 0
   index: -1
 previous
   rotate: false
-  xy: 138, 54
+  xy: 138, 84
   size: 134, 132
   orig: 134, 132
   offset: 0, 0
   index: -1
-settings
+settingsDown
   rotate: false
-  xy: 376, 64
-  size: 70, 70
-  orig: 70, 70
+  xy: 376, 84
+  size: 80, 80
+  orig: 80, 80
+  offset: 0, 0
+  index: -1
+settingsUp
+  rotate: false
+  xy: 376, 2
+  size: 80, 80
+  orig: 80, 80
   offset: 0, 0
   index: -1

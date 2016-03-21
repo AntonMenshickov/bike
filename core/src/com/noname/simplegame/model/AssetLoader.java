@@ -16,7 +16,7 @@ public class AssetLoader {
     public static Texture texture4;
     public static TextureRegion bikeHull, bikeWheel;
     public static NinePatch head;
-    public static SpriteDrawable next, previous, settings,buttonUp, buttonDown;
+    public static SpriteDrawable next, previous, settingsUp, settingsDown, buttonUp, buttonDown;
     public static TextureRegion gasUp, gasDown, breakUp, breakDown;
 
     public static void mainMenu() {
@@ -26,7 +26,8 @@ public class AssetLoader {
         head = atlas.createPatch("head");
         next = new SpriteDrawable(atlas.createSprite ("next"));
         previous = new SpriteDrawable(atlas.createSprite("previous"));
-        settings = new SpriteDrawable(atlas.createSprite("settings"));
+        settingsUp = new SpriteDrawable(atlas.createSprite("settingsUp"));
+        settingsDown = new SpriteDrawable(atlas.createSprite("settingsDown"));
     }
 
     public static void loadControls() {
