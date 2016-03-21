@@ -22,8 +22,7 @@ public class GameScreen implements Screen {
     private MyWorld world;
     private WorldRenderer renderer;
     private WorldController controller;
-    private int width;
-    private int height;
+
     private Stage stage;
     private Table table;
     private ImageButton forward;
@@ -67,8 +66,6 @@ public class GameScreen implements Screen {
 
     @Override
     public void resize(int width, int height) {
-        this.width = width;
-        this.height = height;
         renderer.setSize(width, height);
         stage.getViewport().update(width, height, true);
     }
@@ -103,7 +100,6 @@ public class GameScreen implements Screen {
         stage.act(Gdx.graphics.getDeltaTime());
         if (forward.isPressed()) {
             controller.rightPressed();
-            ;
         } else {
             if (back.isPressed()) {
                 controller.leftPressed();
@@ -120,18 +116,4 @@ public class GameScreen implements Screen {
         stage.draw();
     }
 
-
-    private void control(int keycode) {
-        //A - 29 D - 32 SPACE - 62
-        if (keycode == 29) {
-            //controller.leftPressed();
-        }
-        if (keycode == 32) {
-            //controller.rightPressed();
-        }
-        if (keycode == 62) {
-            controller.breakPressed();
-        }
-
-    }
 }

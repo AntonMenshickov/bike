@@ -51,7 +51,6 @@ public class MyWorld {
             dy += (-0.5f + r.nextFloat()) / 100f;
             if (y > 1) {
                 dy -= 0.01f;
-                ;
             }
             if (y < -1) {
                 dy += 0.01f;

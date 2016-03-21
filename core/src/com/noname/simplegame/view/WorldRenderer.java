@@ -23,9 +23,6 @@ public class WorldRenderer {
     private Array<Body> tmpBodyArray = new Array<Body>();
 
 
-    public float ppuX;
-    public float ppuY;
-
     public void setSize(int w, int h) {
         CAMERA_WIDTH = w / 80f;
         CAMERA_HEIGHT = h / 80f;

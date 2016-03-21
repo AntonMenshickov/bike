@@ -16,8 +16,6 @@ public class Player {
 
     public enum Controll {LEFT, RIGHT, BREAK, IDLE}
 
-    ;
-
     public Controll state = Controll.IDLE;
 
     public Player(World world, Vector2 position, Wheel w1, Wheel w2, Hull h) {

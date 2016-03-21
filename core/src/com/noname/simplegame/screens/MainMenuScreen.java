@@ -31,9 +31,7 @@ public class MainMenuScreen implements Screen {
     private Table table;
     private TextButton play;
     private TextButton exit;
-    private Image bike;
-    private Viewport viewport;
-    private Camera camera;
+
 
     public MainMenuScreen(final Game game) {
         this.game = game;
@@ -81,7 +79,7 @@ public class MainMenuScreen implements Screen {
         table.setBackground(new NinePatchDrawable(AssetLoader.head));
         table.add(play).expand(true,false).top().left().width(200f).height(50f);
         table.add().width(100f);
-        table.add(exit).expand(true,false).top().right().width(200f).height(50f);;
+        table.add(exit).expand(true,false).top().right().width(200f).height(50f);
 
 
     }
