@@ -15,17 +15,18 @@ public class AssetLoader {
     public static Texture texture3;
     public static Texture texture4;
     public static TextureRegion bikeHull, bikeWheel;
-    public static NinePatch buttonUp, buttonDown, head;
-    public static SpriteDrawable next, previous;
+    public static NinePatch head;
+    public static SpriteDrawable next, previous, settings,buttonUp, buttonDown;
     public static TextureRegion gasUp, gasDown, breakUp, breakDown;
 
     public static void mainMenu() {
-        atlas = new TextureAtlas(Gdx.files.internal("data/menu.atlas"));
-        buttonUp = atlas.createPatch("buttonUp");
-        buttonDown = atlas.createPatch("buttonDown");
+        atlas = new TextureAtlas(Gdx.files.internal("data/menu/menu.atlas"));
+        buttonUp = new SpriteDrawable(atlas.createSprite("buttonUp"));
+        buttonDown = new SpriteDrawable(atlas.createSprite("buttonDown"));
         head = atlas.createPatch("head");
         next = new SpriteDrawable(atlas.createSprite ("next"));
         previous = new SpriteDrawable(atlas.createSprite("previous"));
+        settings = new SpriteDrawable(atlas.createSprite("settings"));
     }
 
     public static void loadControls() {

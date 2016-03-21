@@ -30,10 +30,12 @@ public class Wheel {
 
         wheel = world.createBody(def);
         wheelFixture = wheel.createFixture(circle, density);
+        wheelFixture.setRestitution(0.6f);
         wheelFixture.setFilterData(f);
 
         base = world.createBody(def);
         baseFixture = base.createFixture(circle, 1f);
+        f.maskBits = MyWorld.MASK_NOTHING;
         baseFixture.setFilterData(f);
 
         circle.dispose();

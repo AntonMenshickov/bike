@@ -17,6 +17,7 @@ public class MyWorld {
     public final static short GROUND_CATEGORY = 0x0002;
     public final static short MASK_BIKE = GROUND_CATEGORY;
     public final static short MASK_GROUND = -1;
+    public final static short MASK_NOTHING = 0;
     private World world;
     public int width;
     public int height;
@@ -31,7 +32,7 @@ public class MyWorld {
 
     public void createWorld() {
 
-        world = new World(new Vector2(0, -9), true);
+        world = new World(new Vector2(0, -8), true);
         player = new Player(world, new Vector2(8f, 10f), new Wheel(world, 0.39f, 2f),
                 new Wheel(world, 0.39f, 2f), new Hull(world, 1.2f, 0.2f, 1f));
         createGround(200, 0.2f);
