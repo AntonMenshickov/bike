@@ -62,8 +62,8 @@ public class WorldController {
     public void playerStop(Player player) {
         player.state = Controll.BREAK;
         player.leftWheel().baseJoint.enableMotor(false);
-        player.leftWheel().wheel.setAngularVelocity(player.leftWheel().wheel.getAngularVelocity() / player.getWheelsPower());
-        player.rightWheel().wheel.setAngularVelocity(player.rightWheel().wheel.getAngularVelocity() / player.getWheelsPower());
+        player.leftWheel().wheel.setAngularVelocity(player.leftWheel().wheel.getAngularVelocity() / (1 + player.getWheelsPower()));
+        player.rightWheel().wheel.setAngularVelocity(player.rightWheel().wheel.getAngularVelocity() / (1 + player.getWheelsPower()));
     }
 
     public void playerIdle(Player player) {
