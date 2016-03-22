@@ -64,7 +64,7 @@ public class WorldRenderer {
     }
 
     public void render(float delta) {
-        renderer.render(world.getWorld(), cam.combined);
+        //renderer.render(world.getWorld(), cam.combined);
         drawBodies();
         world.getWorld().step(delta, 4, 4);
         cam.position.x = world.player.hull().hull.getPosition().x;
