@@ -23,7 +23,7 @@ public class Player {
         this.leftWheel = w1;
         this.rightWheel = w2;
         this.hull = h;
-        this.setEnginePower(15f);
+        this.setEnginePower(10f);
         this.setTransmissionPower(30f);
         this.setWheelsPower(10f);
         hull.hull.setTransform(position.x, position.y, 0f);
@@ -36,15 +36,15 @@ public class Player {
 
     private void createJoints(Wheel w1, Wheel w2, Hull h) {
         PrismaticJointDef wj = new PrismaticJointDef();
-        wj.initialize(h.hull, w1.base, w1.base.getPosition(), new Vector2((float) (Math.cos(Math.PI - 0.1)), (float) (Math.sin(Math.PI - 0.1))));
+        wj.initialize(h.hull, w1.base, w1.base.getPosition(), new Vector2((float) (Math.cos(Math.PI /2)), (float) (Math.sin(Math.PI /2))));
         wj.enableLimit = true;
         wj.collideConnected = false;
-        wj.lowerTranslation = 0f;
-        wj.upperTranslation = 0.01f;
+        wj.lowerTranslation = -0.1f;
+        wj.upperTranslation = 0.15f;
         wj.enableMotor = true;
         wheel1Joint = (PrismaticJoint) world.createJoint(wj);
 
-        wj.initialize(h.hull, w2.base, w2.base.getPosition(), new Vector2((float) (-Math.cos(Math.PI / 3)), (float) (Math.sin(Math.PI / 3))));
+        wj.initialize(h.hull, w2.base, w2.base.getPosition(), new Vector2((float) (-Math.cos(Math.PI /2)), (float) (Math.sin(Math.PI /2))));
         wj.upperTranslation = 0.15f;
         wheel2Joint = (PrismaticJoint) world.createJoint(wj);
     }

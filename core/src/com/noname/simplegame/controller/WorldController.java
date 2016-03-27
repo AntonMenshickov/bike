@@ -38,25 +38,25 @@ public class WorldController {
     }
 
     public void playerUpdate(Player player) {
-        player.leftJoint().setMaxMotorForce((float) (30 + Math.abs(800 * Math.pow(player.leftJoint().getJointTranslation(), 2))));
+        player.leftJoint().setMaxMotorForce((float) (20 + Math.abs(800 * Math.pow(player.leftJoint().getJointTranslation(), 2))));
         player.leftJoint().setMotorSpeed((float) ((player.leftJoint().getMotorSpeed() - 10 * player.leftJoint().getJointTranslation()) * 0.4));
 
-        player.rightJoint().setMaxMotorForce((float) (20 + Math.abs(800 * Math.pow(player.rightJoint().getJointTranslation(), 2))));
+        player.rightJoint().setMaxMotorForce((float) (15 + Math.abs(800 * Math.pow(player.rightJoint().getJointTranslation(), 2))));
         player.rightJoint().setMotorSpeed((float) (-4 * Math.pow(player.rightJoint().getJointTranslation(), 1)));
     }
 
     public void playerMoveLeft(Player player) {
         player.state = Controll.LEFT;
         player.leftWheel().baseJoint.enableMotor(true);
-        player.leftWheel().baseJoint.setMaxMotorTorque(10f + player.getEnginePower());
-        player.leftWheel().baseJoint.setMotorSpeed(player.leftWheel().baseJoint.getMaxMotorTorque() * 1.1f);
+        player.leftWheel().baseJoint.setMaxMotorTorque(5f * player.getEnginePower() *0.75f);
+        player.leftWheel().baseJoint.setMotorSpeed(player.getEnginePower()*3.5f);
     }
 
     public void playerMoveRight(Player player) {
         player.state = Controll.RIGHT;
         player.leftWheel().baseJoint.enableMotor(true);
-        player.leftWheel().baseJoint.setMaxMotorTorque(10f + player.getEnginePower());
-        player.leftWheel().baseJoint.setMotorSpeed(-player.leftWheel().baseJoint.getMaxMotorTorque() * 1.1f);
+        player.leftWheel().baseJoint.setMaxMotorTorque(5f * player.getEnginePower() *0.75f);
+        player.leftWheel().baseJoint.setMotorSpeed(-player.getEnginePower()*3.5f);
     }
 
     public void playerStop(Player player) {

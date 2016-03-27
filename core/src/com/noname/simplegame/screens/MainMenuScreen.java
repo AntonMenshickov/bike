@@ -82,7 +82,7 @@ public class MainMenuScreen implements Screen {
 
         table.add().expandX();
         table.add().expandX();
-        table.add(settings).right().padRight(5f).padTop(5f);
+        table.add(settings).right().padRight(5f).padTop(0f);
         table.row();
 
         table.add(previous).left().width(67f);

@@ -1,6 +1,8 @@
 package com.noname.simplegame.view;
 
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -32,7 +34,7 @@ public class WorldRenderer {
 
     public void SetCamera(float w, float h) {
         cam.setToOrtho(false, w, h);
-        cam.zoom = 1f;
+        cam.zoom = 1.5f;
         cam.update();
     }
 
@@ -64,7 +66,7 @@ public class WorldRenderer {
     }
 
     public void render(float delta) {
-        //renderer.render(world.getWorld(), cam.combined);
+        renderer.render(world.getWorld(), cam.combined);
         drawBodies();
         world.getWorld().step(delta, 4, 4);
         cam.position.x = world.player.hull().hull.getPosition().x;

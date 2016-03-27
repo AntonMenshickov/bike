@@ -9,6 +9,7 @@ public class DesktopLauncher {
 	public static void main (String[] arg) {
 		TexturePacker.process("../assets/data/menu", "../assets/data/menu", "menu");
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
+		config.samples = 2;
 		new LwjglApplication(new Sgame(), config);
 	}
 }

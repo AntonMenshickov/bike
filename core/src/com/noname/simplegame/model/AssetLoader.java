@@ -48,13 +48,13 @@ public class AssetLoader {
     public static void load() {
 
         texture = new Texture(Gdx.files.internal("data/vehicle/bikeHull.png"));
-        texture.setFilter(TextureFilter.Nearest, TextureFilter.Nearest);
+        texture.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 
         bikeHull = new TextureRegion(texture, 0, 0, texture.getWidth(), texture.getHeight());
         bikeHull.flip(false, false);
 
         texture2 = new Texture(Gdx.files.internal("data/vehicle/bikeWheel.png"));
-        texture2.setFilter(TextureFilter.Nearest, TextureFilter.Nearest);
+        texture2.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 
         bikeWheel = new TextureRegion(texture2, 0, 0, texture2.getWidth(), texture2.getHeight());
         bikeWheel.flip(false, false);

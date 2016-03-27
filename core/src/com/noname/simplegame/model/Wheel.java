@@ -34,7 +34,7 @@ public class Wheel {
         wheelFixture.setFilterData(f);
 
         base = world.createBody(def);
-        baseFixture = base.createFixture(circle, 1f);
+        baseFixture = base.createFixture(circle, density);
         f.maskBits = MyWorld.MASK_NOTHING;
         baseFixture.setFilterData(f);
 
