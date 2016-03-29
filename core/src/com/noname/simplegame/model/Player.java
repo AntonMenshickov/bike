@@ -90,6 +90,7 @@ public class Player {
 
     public void setEnginePower(float enginePower) {
         this.enginePower = enginePower;
+        this.leftWheel().baseJoint.setMaxMotorTorque(5f * this.enginePower *0.75f);
     }
 
     public float getWheelsPower() {
