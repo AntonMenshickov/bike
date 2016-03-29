@@ -1,6 +1,7 @@
 package com.noname.simplegame.model;
 
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
@@ -17,6 +18,7 @@ public class MyWorld {
     public final static short GROUND_CATEGORY = 0x0002;
     public final static short MASK_BIKE = GROUND_CATEGORY;
     public final static short MASK_GROUND = -1;
+    public final static short MASK_NOTHING = 0;
     private World world;
     public int width;
     public int height;
@@ -31,9 +33,9 @@ public class MyWorld {
 
     public void createWorld() {
 
-        world = new World(new Vector2(0, -9), true);
-        player = new Player(world, new Vector2(8f, 10f), new Wheel(world, 0.39f, 2f),
-                new Wheel(world, 0.39f, 2f), new Hull(world, 1.2f, 0.2f, 1f));
+        world = new World(new Vector2(0, -9.8f), true);
+        player = new Player(world, new Vector2(8f, 10f), new Wheel(world, 0.4f, 1.2f),
+                new Wheel(world, 0.4f, 1.4f), new Hull(world, 1.2f, 0.2f, 1.8f));
         createGround(200, 0.2f);
     }
 
@@ -44,19 +46,20 @@ public class MyWorld {
         float x = 0;
         float y = 0;
         float dy = (-0.5f + r.nextFloat()) / 10f;
-        for (int i = 0; i < Math.min((int) (width / segmentSize), 1000); i++) {
+        vertices[0] = new Vector2(0f, 100f);
+        for (int i = 1; i < Math.min((int) (width / segmentSize), 1000)-1; i++) {
             vertices[i] = new Vector2(x, y);
             x += segmentSize;
             y += dy;
             dy += (-0.5f + r.nextFloat()) / 100f;
             if (y > 1) {
                 dy -= 0.01f;
-                ;
             }
             if (y < -1) {
                 dy += 0.01f;
             }
         }
+        vertices[Math.min((int) (width / segmentSize), 1000)-1] = new Vector2(x + segmentSize, 100f);
         poly.createChain(vertices);
 
         BodyDef def = new BodyDef();

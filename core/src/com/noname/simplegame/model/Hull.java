@@ -23,7 +23,6 @@ public class Hull {
         hull = world.createBody(def);
         PolygonShape poly = new PolygonShape();
         poly.setAsBox(width, height);
-
         hullFixture = hull.createFixture(poly, density);
         hullFixture.setFilterData(f);
 

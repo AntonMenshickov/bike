@@ -3,25 +3,31 @@ package com.noname.simplegame.model;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.Texture.TextureFilter;
+import com.badlogic.gdx.graphics.g2d.NinePatch;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.scenes.scene2d.utils.SpriteDrawable;
 
 public class AssetLoader {
-
+    public static TextureAtlas atlas;
     public static Texture texture;
     public static Texture texture2;
     public static Texture texture3;
     public static Texture texture4;
     public static TextureRegion bikeHull, bikeWheel;
-    public static TextureRegion buttonUp, buttonDown;
+    public static NinePatch head;
+    public static SpriteDrawable next, previous, settingsUp, settingsDown, buttonUp, buttonDown;
     public static TextureRegion gasUp, gasDown, breakUp, breakDown;
 
-    public static void loadButtons() {
-        texture3 = new Texture(Gdx.files.internal("data/button.png"));
-        buttonDown = new TextureRegion(texture3, 0, 0, texture3.getWidth(), texture3.getHeight() / 2);
-        buttonDown.flip(false, false);
-
-        buttonUp = new TextureRegion(texture3, 0, texture3.getHeight() / 2, texture3.getWidth(), texture3.getHeight() / 2);
-        buttonUp.flip(false, false);
+    public static void mainMenu() {
+        atlas = new TextureAtlas(Gdx.files.internal("data/menu/menu.atlas"));
+        buttonUp = new SpriteDrawable(atlas.createSprite("buttonUp"));
+        buttonDown = new SpriteDrawable(atlas.createSprite("buttonDown"));
+        head = atlas.createPatch("head");
+        next = new SpriteDrawable(atlas.createSprite ("next"));
+        previous = new SpriteDrawable(atlas.createSprite("previous"));
+        settingsUp = new SpriteDrawable(atlas.createSprite("settingsUp"));
+        settingsDown = new SpriteDrawable(atlas.createSprite("settingsDown"));
     }
 
     public static void loadControls() {
@@ -41,14 +47,14 @@ public class AssetLoader {
 
     public static void load() {
 
-        texture = new Texture(Gdx.files.internal("data/bikeHull.png"));
-        texture.setFilter(TextureFilter.Nearest, TextureFilter.Nearest);
+        texture = new Texture(Gdx.files.internal("data/vehicle/bikeHull.png"));
+        texture.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 
         bikeHull = new TextureRegion(texture, 0, 0, texture.getWidth(), texture.getHeight());
         bikeHull.flip(false, false);
 
-        texture2 = new Texture(Gdx.files.internal("data/bikeWheel.png"));
-        texture2.setFilter(TextureFilter.Nearest, TextureFilter.Nearest);
+        texture2 = new Texture(Gdx.files.internal("data/vehicle/bikeWheel.png"));
+        texture2.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 
         bikeWheel = new TextureRegion(texture2, 0, 0, texture2.getWidth(), texture2.getHeight());
         bikeWheel.flip(false, false);
@@ -60,6 +66,7 @@ public class AssetLoader {
         texture.dispose();
         texture2.dispose();
         texture3.dispose();
+        atlas.dispose();
     }
 
 }
