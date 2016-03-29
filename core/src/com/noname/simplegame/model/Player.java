@@ -13,8 +13,23 @@ public class Player {
     private float enginePower;
     private float wheelsPower;
     private float transmissionPower;
+    private float speed = 0f;
 
-    public enum Controll {LEFT, RIGHT, BREAK, IDLE}
+    public float getSpeed() {
+        return speed;
+    }
+
+    public void setSpeed(float speed) {
+        this.speed = speed;
+        this.leftWheel().baseJoint.setMotorSpeed(speed);
+        this.leftWheel().wheel.setAngularVelocity(speed);
+    }
+    public void brake(){
+        this.leftWheel().baseJoint.setMotorSpeed(0);
+        this.leftWheel().wheel.setAngularVelocity(0f);
+        this.rightWheel().wheel.setAngularVelocity(0f);
+    }
+    public enum Controll {LEFT, RIGHT, BRAKE, IDLE}
 
     public Controll state = Controll.IDLE;
 
