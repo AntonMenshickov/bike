@@ -9,7 +9,7 @@ buildscript {
 }
 
 allprojects {
-    apply plugin: "eclipse"
+    //apply plugin: "eclipse"
     apply plugin: "idea"
 
     version = '1.0'
@@ -74,9 +74,9 @@ project(":core") {
     }
 }
 
-tasks.eclipse.doLast {
-    delete ".project"
-}
+//tasks.eclipse.doLast {
+//    delete ".project"
+//}
 
 task texturePacker << {
     if (project.ext.has('texturePacker')) {

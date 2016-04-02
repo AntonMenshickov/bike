@@ -34,9 +34,8 @@ public class MainMenuScreen implements Screen {
     public MainMenuScreen(final Game game) {
         this.game = game;
         this.game.setScreen(this);
-
-
     }
+
     @Override
     public void show() {
         AssetLoader.mainMenu();
@@ -65,16 +64,16 @@ public class MainMenuScreen implements Screen {
 
 
         ImageButton settings = new ImageButton(new ImageButton.ImageButtonStyle(null, null,
-                null,AssetLoader.settingsUp, AssetLoader.settingsDown, null));
+                null, AssetLoader.settingsUp, AssetLoader.settingsDown, null));
 
         Image bike = new Image(new TextureRegionDrawable(new TextureRegion(new Texture(Gdx.files.internal("data/bikePrew.png")))));
 
         ImageButton previous = new ImageButton(new ImageButton.ImageButtonStyle(null, null,
-                null,AssetLoader.previous, AssetLoader.previous, null));
+                null, AssetLoader.previous, AssetLoader.previous, null));
 
 
         ImageButton next = new ImageButton(new ImageButton.ImageButtonStyle(null, null,
-                null,AssetLoader.next, AssetLoader.next, null));
+                null, AssetLoader.next, AssetLoader.next, null));
 
         exit = new TextButton("exit", tbs);
         exit.setWidth(30f);
@@ -93,7 +92,7 @@ public class MainMenuScreen implements Screen {
 
         table.add(play).expand(true, false).top().left();
         table.add().width(100f);
-        table.add(exit).expand(true,false).top().right();
+        table.add(exit).expand(true, false).top().right();
 
 
     }
