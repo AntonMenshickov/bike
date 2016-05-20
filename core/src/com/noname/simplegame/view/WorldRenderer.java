@@ -12,6 +12,7 @@ import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.utils.Array;
 import com.noname.simplegame.model.AssetLoader;
 import com.noname.simplegame.model.MyWorld;
+import com.noname.simplegame.model.GroundV2;
 
 public class WorldRenderer {
     Box2DDebugRenderer renderer;
@@ -21,7 +22,7 @@ public class WorldRenderer {
     private MyWorld world;
     public OrthographicCamera cam;
     private SpriteBatch batcher;
-    private Sprite bike, wheel;
+    private Sprite bike, wheel, ground;
     private Array<Body> tmpBodyArray = new Array<Body>();
 
 
@@ -41,6 +42,7 @@ public class WorldRenderer {
     private void initAsset() {
         bike = new Sprite(AssetLoader.bikeHull);
         wheel = new Sprite(AssetLoader.bikeWheel);
+        ground = new Sprite(AssetLoader.ground);
     }
 
     private void setSprites() {
@@ -51,6 +53,9 @@ public class WorldRenderer {
         bike.setSize(2.4f, 1.2f);
         bike.setOriginCenter();
         this.world.player.hull().hull.setUserData(bike);
+
+        this.world.ground.bodySprite = ground;
+        this.world.ground.bodySprite.setSize(this.world.ground.segmentSize, 1f);
     }
 
     public WorldRenderer(MyWorld world) {
@@ -72,6 +77,9 @@ public class WorldRenderer {
         cam.position.x = world.player.hull().hull.getPosition().x;
         cam.position.y = world.player.hull().hull.getPosition().y;
         cam.lookAt(world.player.hull().hull.getPosition().x, world.player.hull().hull.getPosition().y, -90);
+       /* cam.position.x = 0;
+        cam.position.y = 0;
+        cam.lookAt(0,0,-90);*/
         cam.update();
 
     }
@@ -89,6 +97,7 @@ public class WorldRenderer {
                 s.draw(batcher);
             }
         }
+        world.ground.draw(batcher);
         batcher.end();
 
 

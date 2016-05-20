@@ -23,6 +23,7 @@ public class MyWorld {
     public int width;
     public int height;
     public Player player;
+    public GroundV2 ground;
 
     public MyWorld() {
         width = 10;
@@ -36,7 +37,9 @@ public class MyWorld {
         world = new World(new Vector2(0, -8f), true);
         player = new Player(world, new Vector2(8f, 10f), new Wheel(world, 0.4f, 1.2f),
                 new Wheel(world, 0.4f, 1.4f), new Hull(world, 1.2f, 0.2f, 1.8f));
-        createGround(200, 0.2f);
+        //createGround(200, 0.2f);
+
+        ground = new GroundV2(world);
     }
 
     private void createGround(float width, float segmentSize) {
