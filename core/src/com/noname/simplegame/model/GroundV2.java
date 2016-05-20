@@ -15,6 +15,7 @@ import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.ChainShape;
+import com.badlogic.gdx.physics.box2d.Filter;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
@@ -56,14 +57,19 @@ public class GroundV2 {
         	}
         }
         shape.createChain(vertices);
+
+		Filter f = new Filter();
+		f.categoryBits = MyWorld.GROUND_CATEGORY;
+		f.maskBits = MyWorld.MASK_GROUND;
+
 		fixtureDef = new FixtureDef();
 		fixtureDef.friction = 0.9f;
 		fixtureDef.restitution = 0f;
 		fixtureDef.shape = shape;
-		
+
 		body = world.createBody(bodyDef);
-		body.createFixture(fixtureDef);
-		
+		body.createFixture(fixtureDef).setFilterData(f);
+
 		/*bodySprite = new Sprite(new Texture("Ground.png"));
 		bodySprite.setSize(segmentSize, 1f);*/
 
