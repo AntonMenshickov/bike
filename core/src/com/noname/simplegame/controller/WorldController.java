@@ -52,7 +52,6 @@ public class WorldController {
                         player.setSpeed(0f);
                     }
                     player.setSpeed(MathUtils.lerp(player.getSpeed(), player.getEnginePower()*5f, .01f));
-                    System.out.println(player.getSpeed());
                 }else{
                     player.brake();
                 }
@@ -64,7 +63,6 @@ public class WorldController {
                         player.setSpeed(0f);
                     }
                     player.setSpeed(MathUtils.lerp(player.getSpeed(),-player.getEnginePower()*5f, .01f ));
-                    System.out.println(player.getSpeed());
                 }else{
                     player.brake();
                 }

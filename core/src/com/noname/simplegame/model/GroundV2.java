@@ -30,7 +30,7 @@ public class GroundV2 {
 	private Vector2[] vertices;
 	private Affine2 af2;
 	private float width = 100;
-	public float segmentSize = 8f;
+	public float segmentSize = 1f;
 	
 	public GroundV2(World world){
 		af2 = new Affine2();
@@ -40,21 +40,17 @@ public class GroundV2 {
 		bodyDef.position.set(0f, 0f);
 		
         shape = new ChainShape();
-        vertices = new Vector2[10];
+        vertices = new Vector2[1000];
         float x = -40;
         float y = -5;
         
         Random r = new Random();
-        
-        for(int i = 0; i < 10; i++){
+		float dy = 0;
+		for(int i = 0; i < 1000; i++){
         	vertices[i] = new Vector2(x,y);
         	x += segmentSize;
-        	float dy = (0.5f + 2*r.nextFloat());
-        	if(i % 2 == 0){
-        		y += dy;
-        	}else{
-        		y -= dy;
-        	}
+        	dy += (-0.2 + 0.4f*r.nextFloat()) * (float)(i / 500f);
+			y = dy;
         }
         shape.createChain(vertices);
 
@@ -81,7 +77,7 @@ public class GroundV2 {
 		return af2;
 	}
 	public void draw(SpriteBatch spriteBatch){
-		for(int i = 0; i < 9; i++){
+		for(int i = 0; i < 999; i++){
 			bodySprite.setOriginCenter();
 			float x,y;
 			x = vertices[i].x;
