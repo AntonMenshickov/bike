@@ -14,6 +14,7 @@ public class AssetLoader {
     public static Texture texture2;
     public static Texture texture3;
     public static Texture texture4;
+    public static Texture ground;
     public static TextureRegion bikeHull, bikeWheel;
     public static NinePatch head;
     public static SpriteDrawable next, previous, settingsUp, settingsDown, buttonUp, buttonDown;
@@ -59,13 +60,15 @@ public class AssetLoader {
         bikeWheel = new TextureRegion(texture2, 0, 0, texture2.getWidth(), texture2.getHeight());
         bikeWheel.flip(false, false);
 
-
+        ground = new Texture(Gdx.files.internal("data/ground.png"));
+        ground.setFilter(TextureFilter.Linear, TextureFilter.Linear);
     }
 
     public static void dispose() {
         texture.dispose();
         texture2.dispose();
         texture3.dispose();
+        ground.dispose();
         atlas.dispose();
     }
 
